@@ -11,7 +11,7 @@ router.get('/', (req, res, next) => {
     // CORE CHALLENGE 1 -
     // HTML page is written
     res.write('<html>');
-    res.write('<head><title>Hello Browser!</Title></head>');
+    res.write('<head><title>Hello Browser (Test)!</Title></head>');
     res.write('<body>');
     res.write('<h1>Welcome to my world!</h1>');
     // navigation to your activities endpoint.
@@ -61,15 +61,17 @@ router.post('/add-activity', (req, res, next) => {
         activities.push(newActivity);
 
         // Remain on './activities' url.
-        res.writeHead(302, {'Location': 'activities'});
+        res.writeHead(302, {
+            'Location': 'activities'
+        });
         res.end();
     });
 });
 
 /***************************************************************************
-* STRETCH CHALLENGE SOLUTIONS
-* These are the solutions for the stretch challenges.
-***************************************************************************/
+ * STRETCH CHALLENGE SOLUTIONS
+ * These are the solutions for the stretch challenges.
+ ***************************************************************************/
 // STRETCH CHALLENGE 1 - Add CSS.
 router.get("/stretch-1", (req, res, next) => {
     // This will be fairly similar to any HTML page, but have internal CSS
@@ -80,8 +82,8 @@ router.get("/stretch-1", (req, res, next) => {
     res.write('<head><title>Hello Browser!</Title>');
     // Really basic styling with some pizzazz....
     res.write('<style>');
-    res.write('body { background-image: linear-gradient('
-            +'to left, violet, indigo, blue, green, yellow, orange, red); color: White}');
+    res.write('body { background-image: linear-gradient(' +
+        'to left, violet, indigo, blue, green, yellow, orange, red); color: White}');
     res.write('</style>');
     res.write('</head>');
     res.write('<body>');
@@ -122,7 +124,9 @@ router.post("/stretch-2", (req, res, next) => {
         const message = parsedBody.split('=')[1];
         console.log(message);
         fs.writeFile('stretch2.txt', message, err => {
-            res.writeHead(302, {'Location': '/'}); // Redirect
+            res.writeHead(302, {
+                'Location': '/'
+            }); // Redirect
             return res.end();
         });
     });
@@ -158,15 +162,17 @@ router.post("/stretch-3", (req, res, next) => {
         parsedBody = parsedBody.split('&'); // Seperate key-val pairs
         const values = []; // Array to store retrieved values.
         for (let key_val_pair of parsedBody) {
-        console.log('KeyVal pair: ' + key_val_pair);
-        values.push(key_val_pair.split('=')[1]); // Push value into array.
+            console.log('KeyVal pair: ' + key_val_pair);
+            values.push(key_val_pair.split('=')[1]); // Push value into array.
         }
 
         // You will need to use JS' parseInt to convert the variable from type
         // string to number, otherwise they will concat like a string.
         // e.g. 11+15 will log a string of '1115'.
         console.log(parseInt(values[0]) + parseInt(values[1])); // Console log the sum
-        res.writeHead(302, {'Location': '/'}); // Redirect to home
+        res.writeHead(302, {
+            'Location': '/'
+        }); // Redirect to home
         return res.end();
     });
 });
