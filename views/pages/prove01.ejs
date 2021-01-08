@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../includes/header.ejs %>
+  </head>
+
+  <body>
+    <% include ../includes/nav.ejs %>
+    <div class="jumbotron text-center">
+      <div class="container">
+        <form method="POST" action="/prove01">
+          <input
+            class="user-input"
+            placeholder="Full Name"
+            type="text"
+            name="userInputName"
+          />
+          <input
+            class="user-input"
+            placeholder="Email Address"
+            type="email"
+            name="userInputEmail"
+          />
+          <input
+            class="user-input"
+            placeholder="Phone"
+            type="tel"
+            name="userInputPhone"
+          />
+          <button type="submit">Submit</button>
+        </form>
+        <div class="text-left">
+          <!-- Display here -->
+          <% if (userInputData.length > 0) { %>
+          <ul>
+            <% for (let data of userInputData) { %>
+            <li><%= data.name%></li>
+            <li><%= data.email%></li>
+            <li><%= data.phone%></li>
+            <% } %>
+          </ul>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
