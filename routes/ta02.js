@@ -51,7 +51,6 @@ router.post('/removeUser', (req, res, next) => {
             return user;
         }
     });
-
     const userIndex = userArray.indexOf(userToRemove);
     if (userToRemove !== -1) {
         userArray.splice(userIndex, 1);
