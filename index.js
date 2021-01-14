@@ -27,13 +27,16 @@ const ta04Routes = require('./routes/ta04');
 app.use(express.static(path.join(__dirname, 'public')))
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
-  // For view engine as Pug
-  //.set('view engine', 'pug') // For view engine as PUG. 
-  // For view engine as hbs (Handlebars)
-  //.engine('hbs', expressHbs({layoutsDir: 'views/layouts/', defaultLayout: 'main-layout', extname: 'hbs'})) // For handlebars
-  //.set('view engine', 'hbs')
-  .use(bodyParser({
-    extended: false
+// For view engine as Pug
+//.set('view engine', 'pug') // For view engine as PUG. 
+// For view engine as hbs (Handlebars)
+//.engine('hbs', expressHbs({layoutsDir: 'views/layouts/', defaultLayout: 'main-layout', extname: 'hbs'})) // For handlebars
+//.set('view engine', 'hbs')
+// .use(bodyParser({
+//   extended: false
+// }))
+app.use(bodyParser.urlencoded({
+    extended: true
   })) // For parsing the body of a POST
   .use('/ta01', ta01Routes)
   .use('/ta02', ta02Routes)
