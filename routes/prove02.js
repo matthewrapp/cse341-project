@@ -5,7 +5,7 @@ const express = require('express');
 const fs = require('fs'); // File system for TA01
 const router = express.Router();
 
-const booksArray = [];
+let booksArray = [];
 
 router.get('/', (req, res, next) => {
     res.render('pages/prove02', {
@@ -26,15 +26,11 @@ router.post('/addBook', (req, res, next) => {
 
 router.post('/removeBook', (req, res, next) => {
 
-    const bookToRemove = booksArray.filter((book) => {
-        if (book.bookTitle === req.body.bookTitle) {
+    booksArray = booksArray.filter((book) => {
+        if (book.bookTitle !== req.body.usersList) {
             return book;
         }
     });
-    const bookIndex = booksArray.indexOf(bookToRemove);
-    if (bookToRemove !== -1) {
-        booksArray.splice(bookIndex, 1);
-    }
 
     res.redirect('/prove02');
 });

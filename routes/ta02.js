@@ -3,7 +3,7 @@
 const express = require('express');
 const router = express.Router();
 
-const userArray = [];
+let userArray = [];
 const errors = [];
 
 router.get('/', (req, res, next) => {
@@ -46,15 +46,12 @@ router.post('/addUser', (req, res, next) => {
 
 router.post('/removeUser', (req, res, next) => {
 
-    const userToRemove = userArray.filter((user) => {
-        if (user.firstName + ' ' + user.lastName === req.body.usersList) {
+    userArray = userArray.filter((user) => {
+        if (user.firstName + ' ' + user.lastName !== req.body.usersList) {
+            // return everything not equal the req.body.usersList // which is the <select> tag in dropdown
             return user;
         }
     });
-    const userIndex = userArray.indexOf(userToRemove);
-    if (userToRemove !== -1) {
-        userArray.splice(userIndex, 1);
-    }
 
     res.redirect('/ta02');
 })
