@@ -1,46 +1,49 @@
-<nav class="navbar navbar-default navbar-static-top navbar-inverse">
-  <div class="container">
-    <ul class="nav navbar-nav">
-      <li>
-        <a href="/" style="padding: 0 2rem; margin: 0"><img class="logo" src="/images/BYUI-logo.png"
-            alt="BYU Idaho logo" /></a>
-      </li>
-      <li class="<%= path === '/' ? 'active' : ''%>">
-        <a href="/"><span class="glyphicon glyphicon-home"></span> Home</a>
-      </li>
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-          Team Activities <span class="caret"></span></a>
-        <ul class="dropdown-menu" role="menu">
-          <li class="<%= path === '/ta01' ? 'active' : ''%>">
-            <a href="/ta01">TA01</a>
-          </li>
-          <li class="<%= path === '/ta02' ? 'active' : ''%>">
-            <a href="/ta02">TA02</a>
-          </li>
-          <li class="<%= path === '/ta03' ? 'active' : ''%>">
-            <a href="/ta03">TA03</a>
-          </li>
-          <li class="<%= path === '/ta04' ? 'active' : ''%>">
-            <a href="/ta04">TA04</a>
-          </li>
-        </ul>
-      </li>
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-          Prove Activities <span class="caret"></span></a>
-        <ul class="dropdown-menu" role="menu">
-          <li class="<%= path === '/prove01' ? 'active' : ''%>">
-            <a href="/prove01">Prove 01</a>
-          </li>
-          <li class="<%= path === '/prove02' ? 'active' : ''%>">
-            <a href="/prove02">Prove 02</a>
-          </li>
-        </ul>
-      </li>
-      <li class="">
-        <a href="https://cse341matthewrapp-ecommerce.herokuapp.com/" target="_blank">Ecommerce Project</a>
-      </li>
-    </ul>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="border-radius: 0;">
+  <div class="container-fluid">
+    <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item <%= path === '/' ? 'active' : ''%>">
+          <a class="nav-link" aria-current="page" href="/" style="font-size: 16px; color: #ffffff;">Home</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false" style="font-size: 16px; color: #ffffff;">
+            Team Activities
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="downdown-item <%= path === '/ta01' ? 'active' : ''%>" href="/ta01"
+                style="font-size: 16px;">TA01</a></li>
+            <li><a class="downdown-item <%= path === '/ta02' ? 'active' : ''%>" href="/ta02"
+                style="font-size: 16px;">TA02</a></li>
+            <li><a class="downdown-item <%= path === '/ta03' ? 'active' : ''%>" href="/ta03"
+                style="font-size: 16px;">TA03</a></li>
+            <li><a class="downdown-item <%= path === '/ta04' ? 'active' : ''%>" href="/ta04"
+                style="font-size: 16px;">TA04</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false" style="font-size: 16px; color: #ffffff;">
+            Prove Assignments
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="downdown-item <%= path === '/prove01' ? 'active' : ''%>" href="/prove01"
+                style="font-size: 16px;">Prove 01</a></li>
+            <li><a class="downdown-item <%= path === '/prove02' ? 'active' : ''%>" href="/prove02"
+                style="font-size: 16px;">Prove 02</a></li>
+          </ul>
+        </li>
+        <li class="nav-item <%= path === '/' ? 'active' : ''%>">
+          <a href="https://cse341matthewrapp-ecommerce.herokuapp.com/" target="_blank" class="nav-link"
+            style="font-size: 16px; color: #ffffff;">Ecommerce
+            Project</a>
+        </li>
+
+    </div>
   </div>
 </nav>

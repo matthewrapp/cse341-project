@@ -11,7 +11,27 @@
     <div class="container">
       <h1><%= title %></h1>
       <p>This is the placeholder for Team Activity 03</p>
+
+      <div class="container-lg">
+        <div class="row">
+          <% jsonContent.forEach((object) => { %>
+          <div class="col-4 my-3 d-flex align-items-stretch">
+            <div class="card shadow-lg rounded">
+              <div class="embed-responsive embed-responsive-16by9"><img src="<%= object.imageUrl %>"
+                  class="card-img-top embed-responsive-item" alt="<%= object.name %>"></div>
+              <div class="card-body">
+                <h3 class="card-title" style="color: #000;"><%= object.name %></h3>
+                <p class="card-text" style="color: #000; font-size: 16px;"><%= object.description %></p>
+                <p class="card-text" style="color: #000;"><%= object.price %></p>
+                <p class="card-text" style="color: #000; font-size: 14px;"><%= object.tags %></p>
+              </div>
+            </div>
+          </div>
+          <% }) %>
+        </div>
+      </div>
     </div>
+  </div>
   </div>
   <div class="container">
 
