@@ -14,4 +14,22 @@ module.exports = class JsonFilter {
     static displayJson() {
         return parsedJson;
     }
+
+    static filter(search) {
+
+        parsedJson.filter((item => {
+            // console.log(item.name + 'trying to return this item');
+            if (item.name === search) {
+                console.log(item.name + 'this is the item returned');
+                return item;
+            }
+        }))
+        // return parsedJson.filter((item) => {
+        //     // console.log('this is item: ' + item.name);
+        //     // console.log('search results:' +
+        //     //     search);
+        //     item.name.match(search);
+        // })
+
+    }
 }
