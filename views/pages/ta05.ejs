@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <% include ../includes/header.ejs %>
+    <% if (style == 'dark') {%>
+    <style>
+        body,
+        .jumbotron {
+            background: black;
+        }
+
+        h4 {
+            color: #fff;
+        }
+
+        .btn-theme {
+            background-color: black;
+            border-color: rgb(0, 180, 230);
+            color: rgb(0, 180, 230);
+            font-size: 11px;
+            letter-spacing: .2px;
+            padding: 6px 20px;
+        }
+
+        .btn-theme:hover {
+            background-color: rgb(3, 157, 200);
+            border-color: rgb(3, 157, 200);
+            color: #fff;
+        }
+
+        .btn-danger {
+            background-color: rgb(254, 51, 92);
+            border-color: rgb(254, 51, 92);
+        }
+
+        .btn-danger:hover {
+            background-color: rgb(196, 1, 40);
+            border-color: rgb(196, 1, 40);
+        }
+    </style>
+    <% } else if (style == 'light') { %>
+    <style>
+        body,
+        .jumbotron {
+            background: #fff;
+        }
+
+        h1,
+        p,
+        h4 {
+            color: black !important;
+        }
+
+        .btn-theme {
+            background-color: white;
+            border-color: rgb(0, 180, 230);
+            color: rgb(0, 180, 230);
+            font-size: 11px;
+            letter-spacing: .2px;
+            padding: 6px 20px;
+        }
+
+        .btn-theme:hover {
+            background-color: rgb(3, 157, 200);
+            border-color: rgb(3, 157, 200);
+            color: #fff;
+        }
+    </style>
+    <% }  else { %>
+    <style>
+        .btn-theme {
+            font-size: 11px;
+            letter-spacing: .2px;
+            padding: 6px 20px;
+        }
+    </style>
+
+    <% } %>
+</head>
+
+<body>
+    <% include ../includes/nav.ejs %>
+    <div class="jumbotron text-center">
+        <div class="container">
+            <h1><%= title %></h1>
+            <p>This is the placeholder for Team Activity 04</p>
+        </div>
+    </div>
+    <div class="container">
+        <form action="/ta05/changeStyle" method="POST">
+            <h4>Choose Your Theme</h4>
+            <div class="row align-items-center">
+                <div class="col-3">
+                    <select class="form-select" style="padding-top: 7px; padding-bottom: 7px;" id="themeStyle"
+                        name="themeStyle">
+                        <option style="font-style: italic;" value="" selected disabled>Current Theme:
+                            <%= style.charAt(0).toUpperCase() + style.slice(1) %> (Change Here)</option>
+                        <option value='default'>Default Theme</option>
+                        <option value='dark'>Dark Theme</option>
+                        <option value='light'>Light Theme</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <button class="btn btn-primary btn-theme" type="submit">Change Theme</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-1">
+                <form action="/ta05/counter" method="POST">
+                    <input type="hidden" name="count" value="1" />
+                    <button class="btn btn-primary btn-theme" style="width: 100%;" type="submit">Plus 1</button>
+                </form>
+            </div>
+            <% if (counter == null) { %>
+            <% } else { %>
+            <div class="col-1" style="text-align: center; align-items: center;">
+                <h4><%= counter %></h4>
+            </div>
+            <% } %>
+            <div class="col-1">
+                <form action="/ta05/counter" method="POST">
+                    <input type="hidden" name="count" value="-1" />
+                    <button class="btn btn-primary btn-theme" style="width: 100%;" type="submit">Minus 1</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-2">
+                <form action="/ta05/destroySession" method="POST">
+                    <input type="hidden" name="destroy" value="1" />
+                    <button class="btn btn-danger" style="width: 100%;" type="submit">Destroy Session!</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
