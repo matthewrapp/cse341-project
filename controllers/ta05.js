@@ -1,5 +1,3 @@
-const session = require('express-session');
-
 exports.ta05 = (req, res, next) => {
     if (req.session.style == null) {
         req.session.style = 'default';
@@ -32,7 +30,3 @@ exports.postDestroySession = (req, res, next) => {
     }
     res.redirect('/ta05');
 }
-
-// exports.postCounter = (req, res, next) => {
-
-// }
