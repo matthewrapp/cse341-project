@@ -2,6 +2,9 @@ exports.ta05 = (req, res, next) => {
     if (req.session.style == null) {
         req.session.style = 'default';
     }
+    if (req.session.counter == null) {
+        req.session.counter = 0;
+    }
     res.render('pages/ta05', {
         title: 'Team Activity 05',
         path: '/ta05', // For pug, EJS
