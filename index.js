@@ -47,6 +47,7 @@ app.use(bodyParser.urlencoded({
   .use('/ta05', ta05Routes)
   .use('/prove01', require('./routes/prove01'))
   .use('/prove02', require('./routes/prove02'))
+  .use('/prove08', require('./routes/prove08'))
 
   .get('/', (req, res, next) => {
     // This is the primary index, always handled last. 
