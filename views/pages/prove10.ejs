@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../includes/header.ejs %>
+    <script src="/scripts/prove10.js" defer></script>
+  </head>
+
+  <body>
+    <% include ../includes/nav.ejs %>
+    <div class="jumbotron text-center">
+      <div class="container">
+        <h1><%= title %></h1>
+      </div>
+    </div>
+    <div class="container">
+        <h2>Add a Super hero!</h2>
+        <input type="text" id="superheroInput" />
+        <button id="submitHeroBtn" class="btn">Submit</button>
+    </div>
+    <div class="container">
+        <h2>Super Heros</h2>
+        <ul id="superheroList">
+            <!-- super heros go here-->
+        </ul>
+    </div>
+  </body>
+</html>

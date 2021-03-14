@@ -37,9 +37,17 @@ app.use(session({
   saveUninitialized: true
 }));
 
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, PUT, DELETE, OPTIONS');
+    next();
+  })
+
 app.use(bodyParser.urlencoded({
-    extended: true
-  })) // For parsing the body of a POST
+  extended: true
+})) // For parsing the body of a POST
+  .use(bodyParser.json())
   .use('/ta01', ta01Routes)
   .use('/ta02', ta02Routes)
   .use('/ta03', ta03Routes)
@@ -49,6 +57,7 @@ app.use(bodyParser.urlencoded({
   .use('/prove02', require('./routes/prove02'))
   .use('/prove08', require('./routes/prove08'))
   .use('/prove09', require('./routes/prove09'))
+  .use('/prove10', require('./routes/prove10'))
 
   .get('/', (req, res, next) => {
     // This is the primary index, always handled last. 
