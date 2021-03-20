@@ -6,12 +6,11 @@ const path = require('path');
 
 // Path to your JSON file, although it can be hardcoded in this file.
 const dummyData = require('../data/prove10-dummydata.json');
-const pathToJsonFile = path.join(__dirname, '../', 'data', 'prove10-dummydata.json')
 
 router.get('/', (req, res, next) => {
-    res.render('pages/prove10', {
-        title: 'Prove 10 Assignment',
-        path: '/prove10',
+    res.render('pages/prove11', {
+        title: 'Prove 11 Assignment',
+        path: '/prove11',
     });
 });
 

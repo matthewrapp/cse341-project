@@ -58,6 +58,9 @@ app.use(bodyParser.urlencoded({
   .use('/prove08', require('./routes/prove08'))
   .use('/prove09', require('./routes/prove09'))
   .use('/prove10', require('./routes/prove10'))
+  .use('/prove11', require('./routes/prove11'))
+
+
 
   .get('/', (req, res, next) => {
     // This is the primary index, always handled last. 
@@ -73,4 +76,17 @@ app.use(bodyParser.urlencoded({
       path: req.url
     })
   })
-  .listen(PORT, () => console.log(`Listening on ${ PORT }`));
+
+const server = app.listen(PORT, () => console.log(`Listening on ${PORT}`));
+const io = require('socket.io')(server);
+
+io.on('connection', socket => {
+  console.log('Client is connected.');
+  socket.on('new-superhero', update => {
+    if (update) {
+      socket.broadcast.emit('update-list');
+    } else {
+      console.log('List NOT UPDATED!')
+    }
+  })
+})

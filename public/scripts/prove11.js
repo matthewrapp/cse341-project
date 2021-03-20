@@ -1,6 +1,11 @@
 const btn = document.getElementById('submitHeroBtn');
 const input = document.getElementById('superheroInput');
-const pathToUrl = '/prove10';
+const pathToUrl = '/prove11';
+const socket = io('/');
+
+socket.on('update-list', () => {
+    populateList(pathToUrl + '/fetchAll');
+})
 
 const fetchData = (url) => {
     const data = fetch(url, {
@@ -14,12 +19,15 @@ const fetchData = (url) => {
 
 const populateList = (url) => {
     let listWrapper = document.getElementById('superheroList');
+    // clear the list before adding
+    listWrapper.innerHTML = ''
 
     fetchData(url)
         .then(fetchData => {
             let data = fetchData.avengers;
             data.map(avenger => {
                 const listItem = document.createElement('li');
+                listItem.classList.add('list-group-item');
                 listWrapper.append(listItem);
                 listItem.append(avenger.name);
             })
@@ -27,7 +35,6 @@ const populateList = (url) => {
 }
 
 btn.addEventListener('click', (e) => {
-    console.log(e);
     let inputValue = document.getElementById('superheroInput').value;
     let listWrapper = document.getElementById('superheroList');
     fetch(pathToUrl + '/insert', {
@@ -38,12 +45,11 @@ btn.addEventListener('click', (e) => {
         body: JSON.stringify({ name: inputValue })
     })
     .then(res => {
-        // clear the list before adding
-        listWrapper.innerHTML = ''
         // clear input 
         document.getElementById('superheroInput').value = '';
         // populate the list
         populateList(pathToUrl + '/fetchAll');
+        socket.emit('new-superhero', true);
     })
     .catch(err => {
         inputValue = '';

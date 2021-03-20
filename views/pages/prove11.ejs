@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../includes/header.ejs %>
+    <!-- Socket.io script tag -->
+    <script src="/socket.io/socket.io.js" defer></script>
+    <script src="/scripts/prove11.js" defer></script>
+    <style>
+        .list-group-item {
+            border: none;
+            padding-left: 0;
+        }
+    </style>
+  </head>
+
+  <body>
+    <% include ../includes/nav.ejs %>
+    <div class="jumbotron text-center">
+      <div class="container">
+        <h1><%= title %></h1>
+        <h4 style="font-weight: 400;">Adding Socket.io to Prove 10 assignment</h4>
+      </div>
+    </div>
+    <div class="container">
+        <label>Add a Super hero: </label>
+        <div class="d-flex" style="width: 60%; margin-bottom: 20px;">
+            <input class="form-control" type="text" id="superheroInput" />
+            <button id="submitHeroBtn" class="btn btn-primary">Submit</button>
+        </div>
+    </div>
+    <div class="container">
+        <h2>Super Heros</h2>
+        <ul id="superheroList" class="list-group">
+            <!-- super heros go here-->
+        </ul>
+    </div>
+  </body>
+</html>
