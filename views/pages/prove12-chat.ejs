@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../includes/header.ejs %>
+    <link href="/stylesheets/prove12.css" rel="stylesheet" type="text/css" />
+    <!-- Socket.io script tag -->
+    <script src="/socket.io/socket.io.js" defer></script>
+    <script src="/scripts/prove12-chat.js" defer></script>
+</head>
+
+<body>
+    <% include ../includes/nav.ejs %>
+    <div class="container">
+        <h1>Live chat:</h1>
+        <ul id="chatBox" class="chat">
+        </ul>
+    </div>
+    <% if (user) { %>
+    <div class="input">
+        <p class="displayname"><%= user %></p>
+        <div class="" style="display: flex; flex-flow: row wrap; justify-content: space-around;">
+            <textarea class="form-control" name="message" id="message"></textarea>
+            <button class="btn btn-primary" onclick="postMessage()">Send</button>
+            <input class="form-control" type="hidden" value="<%= user %>" name="user" id="user">
+        </div>
+    </div>
+    <% } else { %>
+    <p>No login, view only.</p>
+    <% } %>
+</body>
+
+</html>

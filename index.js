@@ -28,8 +28,10 @@ const ta04Routes = require('./routes/ta04');
 const ta05Routes = require('./routes/ta05');
 
 app.use(express.static(path.join(__dirname, 'public')))
+  .use(express.json())
+  .use(bodyParser.urlencoded({ extended: true }))
   .set('views', path.join(__dirname, 'views'))
-  .set('view engine', 'ejs');
+  .set('view engine', 'ejs')
 
 app.use(session({
   secret: 'my secret',
@@ -59,6 +61,7 @@ app.use(bodyParser.urlencoded({
   .use('/prove09', require('./routes/prove09'))
   .use('/prove10', require('./routes/prove10'))
   .use('/prove11', require('./routes/prove11'))
+  .use('/prove12', require('./routes/prove12'))
 
 
 
@@ -82,11 +85,31 @@ const io = require('socket.io')(server);
 
 io.on('connection', socket => {
   console.log('Client is connected.');
-  socket.on('new-superhero', update => {
-    if (update) {
-      socket.broadcast.emit('update-list');
-    } else {
-      console.log('List NOT UPDATED!')
-    }
-  })
+  socket
+    .on('new-superhero', update => {
+      if (update) {
+        socket.broadcast.emit('update-list');
+      } else {
+        console.log('List NOT UPDATED!')
+      }
+    })
+    .on('disconnect', () => {
+      console.log(`${socket.username} disconnected.`)
+    })
+    .on('newUser', (username) => {
+        // A new user logs in.
+      socket.username = username
+      const message = `${username} has logged on.`
+        socket.broadcast.emit('newMessage', {
+          message,
+          from: 'admin'
+        })
+    })
+    .on('message', data => {
+        // Receive a new message
+        console.log('Message received')
+        socket.broadcast.emit('newMessage', {
+            ...data
+        }) // <-----TODO----- Note, only emits to all OTHER clients, not sender.
+    })
 })
